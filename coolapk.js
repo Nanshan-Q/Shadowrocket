@@ -27,10 +27,18 @@ spotify-response =type=http-response, pattern=^https:\/\/(spclient\.wg\.spotify\
 
 # Spotify 请求头修改规则 2
 spotify-header2 =type=http-request, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js, requires-body=false
-  
+
+ ###》百度贴吧
+  # 贴吧 JSON 广告去除规则
+tieba-json =type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/(c\/(s\/sync|f\/(ad\/getSplashAd|frs\/(page|threadlist|generalTabList)|pb\/(pic)?page|excellent\/personalized))$|tiebaads\/commonbatch\?), script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js, requires-body=true
+
+# 贴吧 ProtoBuf 广告去除规则
+tieba-proto =type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/(b\/ad\/adBid|f\/(frs\/(page|threadlist|generalTabList)|ad\/getFeedAd|pb\/page|excellent\/personalized))\?cmd, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js, requires-body=true, binary-body-mode=true
+
 [MITM]
 
 
 
-hostname = %APPEND% api.coolapk.com, spclient.wg.spotify.com, *spclient.spotify.com
+hostname = %APPEND% api.coolapk.com, spclient.wg.spotify.com, *spclient.spotify.com, tiebac.baidu.com
+
 
