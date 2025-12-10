@@ -19,14 +19,14 @@ coolapk-page-datalist =type=http-response, pattern=https:\/\/api\.coolapk\.com\/
 
 
 ###》Spotify会员
- # Spotify 请求头修改规则 1
-spotify-header1 =type=http-request, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-qx-header.js, requires-body=false
+# Spotify 请求头修改规则 1
+spotify-header1 =type=http-request, pattern=^https?:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-qx-header.js, requires-body=false
 
 # Spotify 响应体修改规则
-spotify-response =type=http-response, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true
+spotify-response =type=http-response, pattern=^https?:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true
 
 # Spotify 请求头修改规则 2
-spotify-header2 =type=http-request, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js, requires-body=false
+spotify-header2 =type=http-request, pattern=^https?:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js, requires-body=false
 
  ###》百度贴吧
   # 贴吧 JSON 广告去除规则
@@ -40,5 +40,6 @@ tieba-proto =type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baid
 
 
 hostname = %APPEND% api.coolapk.com, spclient.wg.spotify.com, *spclient.spotify.com, tiebac.baidu.com
+
 
 
