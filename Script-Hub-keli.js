@@ -1,10 +1,12 @@
-#!name=Loon模块转换
+#!name=Loon插件转换
 #!desc=将可莉插件中心转换给小火箭使用
 
 [General]
 force-http-engine-hosts = %APPEND% script.hub, *.script.hub
+
 [Body Rewrite]
 http-response ^https://(hub|pluginhub)\.kelee\.one/list\.json "loon://import\?plugin=(https://kelee.one/Tool/Loon/Lpx/(.+).lpx)" "shadowrocket://install?module=http://script.hub/file/_start_/$1/_end_/$2.sgmodule%3Ftype%3Dloon-plugin%26target%3Dshadowrocket-module%26del%3Dtrue%26jqEnabled%3Dtrue"
+
 
 [Script]
 Script Hub: 前端 = type=http-request, pattern=^https?:\/\/script\.hub\/($|edit\/|reload), script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/main/script-hub.js, timeout=300
