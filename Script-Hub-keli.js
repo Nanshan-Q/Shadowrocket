@@ -1,12 +1,12 @@
 #!name=Loon插件转换
 #!desc=将可莉插件中心转换给小火箭使用
-
-[General]
-force-http-engine-hosts = %APPEND% script.hub, *.script.hub
+#!author=感谢资源作者@iKeLee和Script-Hub和iab0x00
 
 [Body Rewrite]
 http-response ^https://(hub|pluginhub)\.kelee\.one/list\.json "loon://import\?plugin=(https://kelee.one/Tool/Loon/Lpx/(.+).lpx)" "shadowrocket://install?module=http://script.hub/file/_start_/$1/_end_/$2.sgmodule%3Ftype%3Dloon-plugin%26target%3Dshadowrocket-module%26del%3Dtrue%26jqEnabled%3Dtrue"
 
+[General]
+force-http-engine-hosts = %APPEND% script.hub, *.script.hub
 
 [Script]
 Script Hub: 前端 = type=http-request, pattern=^https?:\/\/script\.hub\/($|edit\/|reload), script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/main/script-hub.js, timeout=300
@@ -16,6 +16,7 @@ Script Hub: 重写转换 = type=http-request, pattern=^https?:\/\/script\.hub\/f
 Script Hub: 规则集转换 = type=http-request, pattern=^https?:\/\/script\.hub\/file\/_start_\/.+type=rule-set, script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/main/rule-parser.js, timeout=300
 
 Script Hub: 脚本转换 = type=http-request, pattern=^https?:\/\/script\.hub\/convert\/, script-path=https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/main/script-converter.js, timeout=300
+
 
 [MITM]
 hostname = %APPEND% hub.kelee.one, pluginhub.kelee.one, script.hub, *.script.hub
